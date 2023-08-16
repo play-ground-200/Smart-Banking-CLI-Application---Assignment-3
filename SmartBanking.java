@@ -88,7 +88,7 @@ public class SmartBanking{
                 }while(!valid);
                 String[][] newcustomer = new String[customer.length+1][3];
                 
-                for (int i = 0; i < customer.length-1; i++) {
+                for (int i = 0; i < customer.length; i++) {
                     for (int j = 0; j < customer[i].length; j++) {
                         newcustomer[i][j] = customer[i][j];
                         
@@ -99,9 +99,10 @@ public class SmartBanking{
                 }
                 newcustomer[newcustomer.length-1][1]= name;
                 newcustomer[newcustomer.length-1][0] = "SDB-"+String.format("%05d",newcustomer.length);
-                newcustomer[newcustomer.length-1][2] = String.format("%,.2f",(balance));
+                newcustomer[newcustomer.length-1][2] = String.format("%.2f",(balance));
                 
                 customer = newcustomer;
+                
                 System.out.println();
                 System.out.print(customer[customer.length-1][0] +" : "+name+ " added sucessfully. Do you want to Create new Account (Y/n)? ");
                 if (scanner.nextLine().strip().toUpperCase().equals("Y")) continue;
@@ -149,14 +150,16 @@ public class SmartBanking{
                         if(i==customer.length-1){
                             System.out.println(("\033[31mAccount ID doesn't exist !\033[0m"));
                             valid2 = false;
+                            
+                            
                         }
                         
                     }
 
                 }while(!valid2);
                 System.out.printf("\nName : %S", customer[index][1]);
-                System.out.printf("\nCurrent A.C balance : RS.%s", customer[index][2]);
-                System.out.printf("\nAvailable A.C balance : RS.%.2f", (Double.valueOf(customer[index][2])-500.00));
+                System.out.printf("\nCurrent A.C balance : RS.%1$,.2f", Double.valueOf(customer[index][2]));
+                System.out.printf("\nAvailable A.C balance : RS.%1$,.2f", (Double.valueOf(customer[index][2])-500.00));
                 System.out.print("\nDo you want to continue (Y/n)? ");
                 if (scanner.nextLine().strip().toUpperCase().equals("Y")) continue;
                 screen = DASHBOARD;
@@ -209,7 +212,7 @@ public class SmartBanking{
 
                 }while(!valid2);   
                 
-                System.out.printf("\nCurrent A.C balance : RS.%s", customer[index2][2]);
+                System.out.printf("\nCurrent A.C balance : RS.%1$,.2f", Double.valueOf(customer[index2][2]));
                  valid = true;
                 do{
                     valid =true;
@@ -227,7 +230,7 @@ public class SmartBanking{
                 }while(!valid);
 
                 customer[index2][2] = (Double.valueOf(customer[index2][2])+balance)+"";
-                System.out.printf("\nNew A.C balance : RS.%s", customer[index2][2]);
+                System.out.printf("\nNew A.C balance : RS.%1$,.2f", Double.valueOf(customer[index2][2]));
                 System.out.println();
                 System.out.print("Do you want to Coninue (Y/n)? ");
                 if (scanner.nextLine().strip().toUpperCase().equals("Y")) continue;
@@ -281,7 +284,7 @@ public class SmartBanking{
 
                 }while(!valid2);   
                 
-                System.out.printf("\nCurrent A.C balance : RS.%s", customer[index3][2]);
+                System.out.printf("\nCurrent A.C balance : RS.%1$,.2f", Double.valueOf(customer[index3][2]));
                  valid = true;
                 do{
                     valid =true;
@@ -406,8 +409,8 @@ public class SmartBanking{
 
                 }while(!valid2); 
                 
-                System.out.printf("\nFrom A.C balance : RS.%s", customer[index3][2]);
-                System.out.printf("\nTo A.C balance : RS.%s", customer[index4][2]);
+                System.out.printf("\nFrom A.C balance : RS.%1$,.2f", Double.valueOf(customer[index3][2]));
+                System.out.printf("\nTo A.C balance : RS.%1$,.2f", Double.valueOf(customer[index4][2]));
                  valid = true;
                 do{
                     valid =true;
@@ -434,8 +437,8 @@ public class SmartBanking{
                 customer[index3][2] = (Double.valueOf(customer[index3][2])-(balance*1.02)) +"";
                 
                 customer[index4][2] = (Double.valueOf(customer[index4][2])+balance)+"";
-                System.out.printf("\nFrom account balance : RS.%s", (customer[index3][2]));
-                System.out.printf("\nTo account balance : RS.%s", (customer[index4][2]));
+                System.out.printf("\nFrom account balance : RS.%1$,.2f", (Double.valueOf(customer[index3][2])));
+                System.out.printf("\nTo account balance : RS.%1$,.2f", (Double.valueOf(customer[index4][2])));
                 System.out.println();
                 System.out.print("Do you want to Coninue (Y/n)? ");
                 if (scanner.nextLine().strip().toUpperCase().equals("Y")) continue;
@@ -492,23 +495,26 @@ public class SmartBanking{
                 newcustomer = new String[customer.length-1][3];
                 
                 boolean found =false;
-                for (int i = 0; i < newcustomer.length-1; i++) {
+                for (int i = 0; i < newcustomer.length; i++) {
+                    
                    if (customer[i][0].equals(IDcheck)){
-                       newcustomer[i][0]=newcustomer[i+1][0];
-                       newcustomer[i][1]=newcustomer[i+1][1];
-                       newcustomer[i][2]=newcustomer[i+1][2];
+                       newcustomer[i][0]=customer[i+1][0];
+                       newcustomer[i][1]=customer[i+1][1];
+                       newcustomer[i][2]=customer[i+1][2];
                        found=true;
+                       continue;
                    }
                    else if(found) {
-                       newcustomer[i][0]=newcustomer[i+1][0];
-                       newcustomer[i][1]=newcustomer[i+1][1];
-                       newcustomer[i][2]=newcustomer[i+1][2];
+                    
+                       newcustomer[i][0]=customer[i+1][0];
+                       newcustomer[i][1]=customer[i+1][1];
+                       newcustomer[i][2]=customer[i+1][2];
                    }
    
                    else {
-                       newcustomer[i][0]=newcustomer[i][0];
-                       newcustomer[i][1]=newcustomer[i][1];
-                       newcustomer[i][2]=newcustomer[i][2];
+                       newcustomer[i][0]=customer[i][0];
+                       newcustomer[i][1]=customer[i][1];
+                       newcustomer[i][2]=customer[i][2];
                    }
                    
                 }
