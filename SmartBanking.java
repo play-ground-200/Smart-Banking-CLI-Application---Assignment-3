@@ -209,7 +209,7 @@ public class SmartBanking{
 
                 }while(!valid2);   
                 
-                System.out.printf("\nCurrent A.C balance : RS.%s", customer[index][2]);
+                System.out.printf("\nCurrent A.C balance : RS.%s", customer[index2][2]);
                  valid = true;
                 do{
                     valid =true;
@@ -281,7 +281,7 @@ public class SmartBanking{
 
                 }while(!valid2);   
                 
-                System.out.printf("\nCurrent A.C balance : RS.%s", customer[index][2]);
+                System.out.printf("\nCurrent A.C balance : RS.%s", customer[index3][2]);
                  valid = true;
                 do{
                     valid =true;
@@ -348,7 +348,7 @@ public class SmartBanking{
                         
                     }
                  for (int i = 0; i < customer.length; i++) {
-                        if(IDcheck.equals(customer[i][0])){
+                        if(IDfromcheck.equals(customer[i][0])){
                             index3 = i;
                             break loop;
                         }
@@ -392,7 +392,7 @@ public class SmartBanking{
                         
                     }
                   for (int i = 0; i < customer.length; i++) {
-                        if(IDcheck.equals(customer[i][0])){
+                        if(IDtocheck.equals(customer[i][0])){
                             index4 = i;
                             break loop;
                         }
@@ -406,8 +406,8 @@ public class SmartBanking{
 
                 }while(!valid2); 
                 
-                System.out.printf("\nFrom account balance : RS.%1$,.2f", BALANCE[index3]);
-                System.out.printf("\nTo acount balance : RS.%1$,.2f", BALANCE[index4]);
+                System.out.printf("\nFrom A.C balance : RS.%s", customer[index3][2]);
+                System.out.printf("\nTo A.C balance : RS.%s", customer[index4][2]);
                  valid = true;
                 do{
                     valid =true;
@@ -419,9 +419,9 @@ public class SmartBanking{
                         valid =false;
                         continue;
                     }
-                    if(((BALANCE[index3]-(balance*1.02))<500)){
+                    if(((Double.valueOf(customer[index3][2])-(balance*1.02))<500)){
                         System.out.println("\033[31mInsuficient Balance !\033[0m\n");
-                        System.out.printf("\033[31mAvailable Balance is : RS.%1$,.2f!\033[0m\n",BALANCE[index3]-500);
+                        System.out.printf("\033[31mAvailable Balance is : RS.%1$,.2f!\033[0m\n",Double.valueOf(customer[index3][2])-500);
                         
                         valid =false;
                         continue;
@@ -431,11 +431,11 @@ public class SmartBanking{
                   
                 }while(!valid);
 
-                BALANCE[index3] = BALANCE[index3]-(balance*1.02);
+                customer[index3][2] = (Double.valueOf(customer[index3][2])-(balance*1.02)) +"";
                 
-                BALANCE[index4] = BALANCE[index4]+balance;
-                System.out.printf("\nFrom account balance : RS.%1$,.2f", (BALANCE[index3]));
-                System.out.printf("\nTo account balance : RS.%1$,.2f", (BALANCE[index4]));
+                customer[index4][2] = (Double.valueOf(customer[index4][2])+balance)+"";
+                System.out.printf("\nFrom account balance : RS.%s", (customer[index3][2]));
+                System.out.printf("\nTo account balance : RS.%s", (customer[index4][2]));
                 System.out.println();
                 System.out.print("Do you want to Coninue (Y/n)? ");
                 if (scanner.nextLine().strip().toUpperCase().equals("Y")) continue;
@@ -474,12 +474,12 @@ public class SmartBanking{
                         }
                         
                     }
-                    for (int i = 0; i < ID.length; i++) {
-                        if(IDcheck.equals(ID[i])){
+                     for (int i = 0; i < customer.length; i++) {
+                        if(IDcheck.equals(customer[i][0])){
                             index3 = i;
                             break loop;
                         }
-                        if(i==ID.length-1){
+                        if(i==customer.length-1){
                             System.out.println(("\033[31mAccount ID doesn't exist !\033[0m"));
                             valid2 = false;
                         }
@@ -489,33 +489,30 @@ public class SmartBanking{
 
                 }while(!valid2);   
 
-                newid = new String[ID.length-1];
-                newname = new String[NAME.length-1];
-                newbalance = new double[BALANCE.length-1];
+                newcustomer = new String[customer.length-1][3];
+                
                 boolean found =false;
-                for (int i = 0; i < newid.length-1; i++) {
-                   if (ID[i].equals(IDcheck)){
-                       newid[i]=ID[i+1];
-                       newname[i] = NAME[i+1];
-                       newbalance[i] = BALANCE[i+1];
+                for (int i = 0; i < newcustomer.length-1; i++) {
+                   if (customer[i][0].equals(IDcheck)){
+                       newcustomer[i][0]=newcustomer[i+1][0];
+                       newcustomer[i][1]=newcustomer[i+1][1];
+                       newcustomer[i][2]=newcustomer[i+1][2];
                        found=true;
                    }
                    else if(found) {
-                       newid[i]=ID[i+1];
-                       newname[i] = NAME[i+1];
-                       newbalance[i] = BALANCE[i+1];
+                       newcustomer[i][0]=newcustomer[i+1][0];
+                       newcustomer[i][1]=newcustomer[i+1][1];
+                       newcustomer[i][2]=newcustomer[i+1][2];
                    }
    
                    else {
-                       newid[i]=ID[i];
-                       newname[i] = NAME[i];
-                       newbalance[i] = BALANCE[i];
+                       newcustomer[i][0]=newcustomer[i][0];
+                       newcustomer[i][1]=newcustomer[i][1];
+                       newcustomer[i][2]=newcustomer[i][2];
                    }
                    
                 }
-                ID =newid;
-                NAME = newname;
-                BALANCE = newbalance;
+                customer=newcustomer;
                 System.out.print( " remove sucessfully. Do you want to remove another Account (Y/n)? ");
                 if (scanner.nextLine().strip().toUpperCase().equals("Y")) continue;
                 screen = DASHBOARD;
