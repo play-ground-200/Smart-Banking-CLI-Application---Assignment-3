@@ -19,6 +19,7 @@ public class SmartBanking{
 
         String screen = DASHBOARD;
         String[][] customer = new String[0][];
+        int numberOfAccounts=1;
         
         
         do{
@@ -49,7 +50,7 @@ public class SmartBanking{
            
 
                 boolean valid = true;
-                String id;
+                
                 String name ;
                 double balance;
                 
@@ -98,7 +99,8 @@ public class SmartBanking{
                     
                 }
                 newcustomer[newcustomer.length-1][1]= name;
-                newcustomer[newcustomer.length-1][0] = "SDB-"+String.format("%05d",newcustomer.length);
+                newcustomer[newcustomer.length-1][0] = "SDB-"+String.format("%05d",numberOfAccounts);
+                numberOfAccounts++;
                 newcustomer[newcustomer.length-1][2] = String.format("%.2f",(balance));
                 
                 customer = newcustomer;
@@ -288,11 +290,11 @@ public class SmartBanking{
                  valid = true;
                 do{
                     valid =true;
-                    System.out.print("\nEnter deposit amount: ");
+                    System.out.print("\nEnter withdraw amount: ");
                     balance = scanner.nextDouble();
                     scanner.nextLine();
                     if((balance<100)){
-                        System.out.println("\033[31mMinimum Initial deposit is RS500.00 !\033[0m");
+                        System.out.println("\033[31mMinimum Initial withdraw is RS500.00 !\033[0m");
                         valid =false;
                         continue;
                     }
@@ -536,4 +538,5 @@ public class SmartBanking{
         }while(true);
         
     }
+    
 }
