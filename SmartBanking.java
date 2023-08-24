@@ -48,9 +48,7 @@ public class SmartBanking{
 
                 case OPEN_ACCOUNT:
            
-
                 boolean valid = true;
-                
                 String name ;
                 double balance;
                 
@@ -78,14 +76,8 @@ public class SmartBanking{
                     System.out.print("Enter Initial deposit: ");
                     balance = scanner.nextDouble();
                     scanner.nextLine();
-                    if((balance<5000)){
-                        System.out.println("\033[31mMinimum Initial deposit is RS5000.00 !\033[0m");
-                        valid =false;
-                        continue;
-                    }
-                   else valid = true;
+                    valid=isamountvalid(balance, 5000, "Initial Deposit");
                     
-                  
                 }while(!valid);
                 String[][] newcustomer = new String[customer.length+1][3];
                 
@@ -180,13 +172,7 @@ public class SmartBanking{
                     System.out.print("\nEnter deposit amount: ");
                     balance = scanner.nextDouble();
                     scanner.nextLine();
-                    if((balance<500)){
-                        System.out.println("\033[31mMinimum Initial deposit is RS500.00 !\033[0m");
-                        valid =false;
-                        continue;
-                    }
-                   else valid = true;
-                    
+                    valid=isamountvalid(balance, 500, "Deposit");
                   
                 }while(!valid);
 
@@ -233,7 +219,7 @@ public class SmartBanking{
                     balance = scanner.nextDouble();
                     scanner.nextLine();
                     if((balance<100)){
-                        System.out.println("\033[31mMinimum Initial withdraw is RS500.00 !\033[0m");
+                        System.out.println("\033[31mMinimum  withdraw is RS500.00 !\033[0m");
                         valid =false;
                         continue;
                     }
@@ -444,6 +430,18 @@ public class SmartBanking{
                  
         return valid;
         
+        
+    }
+    public static boolean isamountvalid(double balance , double min , String transaction){
+        boolean valid =true;
+        if((balance<min)){
+        System.out.println();
+            System.out.printf("\033[31mMinimum %s is RS5000.00 !\033[0m\n",transaction);
+            valid =false;
+                        
+        }
+        else valid = true;
+        return valid;           
         
     }
     
