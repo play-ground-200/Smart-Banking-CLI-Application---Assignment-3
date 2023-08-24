@@ -218,20 +218,7 @@ public class SmartBanking{
                     System.out.print("\nEnter withdraw amount: ");
                     balance = scanner.nextDouble();
                     scanner.nextLine();
-                    if((balance<100)){
-                        System.out.println("\033[31mMinimum  withdraw is RS500.00 !\033[0m");
-                        valid =false;
-                        continue;
-                    }
-                    if(((Double.valueOf(customer[index3][2])-balance)<500)){
-                        System.out.println("\033[31mInsuficient Balance !\033[0m\n");
-                        System.out.printf("\033[31mAvailable Balance is : RS.%1$,.2f!\033[0m\n",Double.valueOf(customer[index3][2])-500);
-                        
-                        valid =false;
-                        continue;
-                    }
-                   else valid = true;
-                    
+                    valid = iswithdrawvalid(balance, 100.0,customer[index3][2], "Withdraw");
                   
                 }while(!valid);
 
@@ -302,20 +289,7 @@ public class SmartBanking{
                     System.out.print("\nEnter transfer amount: ");
                     balance = scanner.nextDouble();
                     scanner.nextLine();
-                    if((balance<100)){
-                        System.out.println("\033[31mMinimum transfer amount is RS100.00 !\033[0m");
-                        valid =false;
-                        continue;
-                    }
-                    if(((Double.valueOf(customer[index3][2])-(balance*1.02))<500)){
-                        System.out.println("\033[31mInsuficient Balance !\033[0m\n");
-                        System.out.printf("\033[31mAvailable Balance is : RS.%1$,.2f!\033[0m\n",Double.valueOf(customer[index3][2])-500);
-                        
-                        valid =false;
-                        continue;
-                    }
-                   else valid = true;
-                    
+                    valid = iswithdrawvalid(balance, 100.0,customer[index3][2], "transfer");
                   
                 }while(!valid);
 
@@ -443,6 +417,24 @@ public class SmartBanking{
         else valid = true;
         return valid;           
         
+    }
+    public static boolean iswithdrawvalid(double balance, double min , String currentbal, String tranaction){
+        boolean valid =true;
+        if((balance<min)){
+            System.out.printf("\n\033[31mMinimum  %s is RS500.00 !\033[0m\n",tranaction);
+            valid =false;
+                        
+        }
+        if(((Double.valueOf(currentbal)-balance)<500)){
+            System.out.println("\033[31mInsuficient Balance !\033[0m\n");
+            System.out.printf("\033[31mAvailable Balance is : RS.%1$,.2f!\033[0m\n",Double.valueOf(currentbal)-500);
+                        
+            valid =false;
+            
+        }
+        
+        return valid;           
+
     }
     
 }
