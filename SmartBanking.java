@@ -121,30 +121,9 @@ public class SmartBanking{
                     valid2 =true;
                     System.out.print("\nEnter Account ID : ");
                     IDcheck = scanner.nextLine();
-                    if(IDcheck.isBlank()){
-                        System.out.println(("\033[31mAccount ID can't be empty !\033[0m"));
-                        valid2 = false;
-                        continue;
-                    }
-                    if(IDcheck.length()<9){
-                        System.out.println(("\033[31mInvaid ID!\033[0m"));
-                        valid2 = false;
-                        continue;
-                    }
-                    if(!IDcheck.substring(0, 4).equals("SDB-") || IDcheck.length() != 9){
-                        System.out.println("\033[31mInvalid Account ID !\033[0m");
-                        valid2 = false;
-                        continue;
-                    }
-                    for (int i = 4; i < IDcheck.length(); i++) {
-                        if(!Character.isDigit(IDcheck.charAt(i))){
-                            System.out.println("\033[31mInvalid Account ID !\033[0m");
-                            valid2 =false;
-                            continue;
-                        }
-                        
-                    }
-                    for (int i = 0; i < customer.length; i++) {
+                    valid2 = idcheck(IDcheck );
+                    if(!valid2)continue;
+                       for (int i = 0; i < customer.length; i++) {
                         if(IDcheck.equals(customer[i][0])){
                             index = i;
                             break loop;
@@ -157,6 +136,7 @@ public class SmartBanking{
                         }
                         
                     }
+                    
 
                 }while(!valid2);
                 System.out.printf("\nName : %S", customer[index][1]);
@@ -176,29 +156,8 @@ public class SmartBanking{
                      valid2 =true;
                     System.out.print("Enter Account ID : ");
                     IDcheck = scanner.nextLine();
-                    if(IDcheck.isBlank()){
-                        System.out.println(("\033[31mAccount ID can't be empty !\033[0m"));
-                        valid2 = false;
-                        continue;
-                    }
-                    if(IDcheck.length()<9){
-                        System.out.println(("\033[31mInvaid ID!\033[0m"));
-                        valid2 = false;
-                        continue;
-                    }
-                    if(!IDcheck.substring(0, 4).equals("SDB-") || IDcheck.length() != 9){
-                        System.out.println("\033[31mInvalid Account ID !\033[0m");
-                        valid2 = false;
-                        continue;
-                    }
-                    for (int i = 4; i < IDcheck.length(); i++) {
-                        if(!Character.isDigit(IDcheck.charAt(i))){
-                            System.out.println("\033[31mInvalid Account ID !\033[0m");
-                            valid2 =false;
-                            continue;
-                        }
-                        
-                    }
+                    valid2 = idcheck(IDcheck );
+                    if(!valid2)continue;
                    for (int i = 0; i < customer.length; i++) {
                         if(IDcheck.equals(customer[i][0])){
                             index2 = i;
@@ -248,29 +207,9 @@ public class SmartBanking{
                      valid2 =true;
                     System.out.print("Enter Account ID : ");
                     IDcheck = scanner.nextLine();
-                    if(IDcheck.isBlank()){
-                        System.out.println(("\033[31mAccount ID can't be empty !\033[0m"));
-                        valid2 = false;
-                        continue;
-                    }
-                    if(IDcheck.length()<9){
-                        System.out.println(("\033[31mInvaid ID!\033[0m"));
-                        valid2 = false;
-                        continue;
-                    }
-                    if(!IDcheck.substring(0, 4).equals("SDB-") || IDcheck.length() != 9){
-                        System.out.println("\033[31mInvalid Account ID !\033[0m");
-                        valid2 = false;
-                        continue;
-                    }
-                    for (int i = 4; i < IDcheck.length(); i++) {
-                        if(!Character.isDigit(IDcheck.charAt(i))){
-                            System.out.println("\033[31mInvalid Account ID !\033[0m");
-                            valid2 =false;
-                            continue;
-                        }
-                        
-                    }
+                    valid2 = idcheck(IDcheck );
+                    if(!valid2)continue;
+             
                   for (int i = 0; i < customer.length; i++) {
                         if(IDcheck.equals(customer[i][0])){
                             index3 = i;
@@ -329,29 +268,8 @@ public class SmartBanking{
                      valid2 =true;
                     System.out.print("Enter from Account ID : ");
                     IDfromcheck = scanner.nextLine();
-                    if(IDfromcheck.isBlank()){
-                        System.out.println(("\033[31mAccount ID can't be empty !\033[0m"));
-                        valid2 = false;
-                        continue;
-                    }
-                    if(IDfromcheck.length()<9){
-                        System.out.println(("\033[31mInvaid ID!\033[0m"));
-                        valid2 = false;
-                        continue;
-                    }
-                    if(!IDfromcheck.substring(0, 4).equals("SDB-") || IDfromcheck.length() != 9){
-                        System.out.println("\033[31mInvalid Account ID !\033[0m");
-                        valid2 = false;
-                        continue;
-                    }
-                    for (int i = 4; i < IDfromcheck.length(); i++) {
-                        if(!Character.isDigit(IDfromcheck.charAt(i))){
-                            System.out.println("\033[31mInvalid Account ID !\033[0m");
-                            valid2 =false;
-                            continue;
-                        }
-                        
-                    }
+                    valid2 = idcheck(IDfromcheck );
+                  if(!valid2)continue;
                  for (int i = 0; i < customer.length; i++) {
                         if(IDfromcheck.equals(customer[i][0])){
                             index3 = i;
@@ -373,29 +291,8 @@ public class SmartBanking{
                      valid2 =true;
                     System.out.print("Enter to Account ID : ");
                     IDtocheck = scanner.nextLine();
-                    if(IDtocheck.isBlank()){
-                        System.out.println(("\033[31mAccount ID can't be empty !\033[0m"));
-                        valid2 = false;
-                        continue;
-                    }
-                    if(IDtocheck.length()<9){
-                        System.out.println(("\033[31mInvaid ID!\033[0m"));
-                        valid2 = false;
-                        continue;
-                    }
-                    if(!IDtocheck.substring(0, 4).equals("SDB-") || IDtocheck.length() != 9){
-                        System.out.println("\033[31mInvalid Account ID !\033[0m");
-                        valid2 = false;
-                        continue;
-                    }
-                    for (int i = 4; i < IDtocheck.length(); i++) {
-                        if(!Character.isDigit(IDtocheck.charAt(i))){
-                            System.out.println("\033[31mInvalid Account ID !\033[0m");
-                            valid2 =false;
-                            continue;
-                        }
-                        
-                    }
+                    valid2 = idcheck(IDtocheck );
+                    if(!valid2)continue;
                   for (int i = 0; i < customer.length; i++) {
                         if(IDtocheck.equals(customer[i][0])){
                             index4 = i;
@@ -456,29 +353,8 @@ public class SmartBanking{
                      valid2 =true;
                     System.out.print("Enter Account ID : ");
                     IDcheck = scanner.nextLine();
-                    if(IDcheck.isBlank()){
-                        System.out.println(("\033[31mAccount ID can't be empty !\033[0m"));
-                        valid2 = false;
-                        continue;
-                    }
-                    if(IDcheck.length()<9){
-                        System.out.println(("\033[31mInvaid ID!\033[0m"));
-                        valid2 = false;
-                        continue;
-                    }
-                    if(!IDcheck.substring(0, 4).equals("SDB-") || IDcheck.length() != 9){
-                        System.out.println("\033[31mInvalid Account ID !\033[0m");
-                        valid2 = false;
-                        continue;
-                    }
-                    for (int i = 4; i < IDcheck.length(); i++) {
-                        if(!Character.isDigit(IDcheck.charAt(i))){
-                            System.out.println("\033[31mInvalid Account ID !\033[0m");
-                            valid2 =false;
-                            continue;
-                        }
-                        
-                    }
+                    valid2 = idcheck(IDcheck );
+                    if(!valid2)continue;
                      for (int i = 0; i < customer.length; i++) {
                         if(IDcheck.equals(customer[i][0])){
                             index3 = i;
@@ -536,6 +412,38 @@ public class SmartBanking{
            
 
         }while(true);
+        
+    }
+
+    public static boolean idcheck(String IDcheck){
+        boolean valid =true;
+        if(IDcheck.isBlank()){
+                        System.out.println(("\033[31mAccount ID can't be empty !\033[0m"));
+                        valid = false;
+                        
+                        return valid;
+                    }
+                    else if(IDcheck.length()<9){
+                        System.out.println(("\033[31mInvaid ID!\033[0m"));
+                        valid = false;
+                        return valid;
+                    }
+                    else if(!IDcheck.substring(0, 4).equals("SDB-") || IDcheck.length() != 9){
+                        System.out.println("\033[31mInvalid Account ID !\033[0m");
+                        valid = false;
+                        return valid;
+                    }
+                    for (int i = 4; i < IDcheck.length(); i++) {
+                        if(!Character.isDigit(IDcheck.charAt(i))){
+                            System.out.println("\033[31mInvalid Account ID !\033[0m");
+                            valid =false;
+                            continue;
+                        }
+                        
+                    }
+                 
+        return valid;
+        
         
     }
     
